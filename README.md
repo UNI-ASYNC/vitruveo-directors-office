@@ -8,20 +8,29 @@ The purpose is simple: **show what is proposed, what information is needed, who 
 
 This is a public planning workspace, not an assertion that VF has approved every proposal or granted a formal operational mandate.
 
-## Start here: six proposals
+## All issues and proposals
 
-| Proposal | What it means to the community |
-| --- | --- |
-| [#1 — Guided node installation](issues/1) | Make node setup understandable and repeatable |
-| [#2 — Safe node updates](issues/2) | Give node owners a tested, guided update process instead of one-to-one fixes |
-| [#3 — Independent RPC/API endpoints](issues/3) | Help external apps use independently hosted Vitruveo node services |
-| [#4 — Open-source client and verifiable releases](issues/4) | Establish reproducible software builds and transparent change history |
-| [#5 — Node-owner handbook and support](issues/5) | Publish current instructions and a clear support route |
-| [#6 — Progress, decisions and blockers](issues/6) | Show the next action, evidence, owner and verified result for each proposal |
+**[View the complete issue tracker — all issues, including new additions](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue)**
+
+The issues below are the current public register. These are proposals, audits, and evidence reviews—not claims that the work is approved or complete.
+
+| Issue | Topic | Purpose |
+| --- | --- | --- |
+| [#1 — Guided node installation](issues/1) | Validator setup | Make node setup understandable and repeatable |
+| [#2 — Safe node updates](issues/2) | Validator maintenance | Give node owners a tested, guided update process |
+| [#3 — Independent RPC/API endpoints](issues/3) | Network infrastructure | Enable independently hosted Vitruveo node services |
+| [#4 — Verifiable client releases](issues/4) | Source and releases | Establish reproducible builds and transparent change history |
+| [#5 — Node-owner handbook](issues/5) | Documentation and support | Publish instructions and a clear operator support route |
+| [#6 — Progress, decisions and blockers](issues/6) | Public coordination | Track evidence, ownership, decisions and next steps |
+| [#7 — Mainnet precompile evidence](issues/7) | Developer compatibility | Review Shizazles mainnet tests and documentation gaps |
+| [#8 — Website and documentation audit](issues/8) | Public-facing repairs | Investigate broken links, missing navigation and developer docs |
+| [#9 — AI Chat and MCP audit](issues/9) | AI and developer tools | Check chat loading, MCP configuration, 17 tools and linked pages |
+
+**[Browse open issues](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue+is%3Aopen)** · **[Browse closed issues](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue+is%3Aclosed)** · **[Submit a new issue](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues/new)**
 
 ## How to follow the work
 
-- Open [Issues](issues) to see proposals and discussions.
+- Open the [complete issue tracker](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue) to see the current list, including issues added after this README was last edited.
 - See the **Vitruveo — Director's Office & Validator Recovery** GitHub Project for board-style status once issues are linked.
 - Read each issue's **Needed to start** section to see which technical records or decisions would help the work advance.
 - A proposal is **not** a completed or authorized production change. Closure should cite tests, release evidence or documentation.
