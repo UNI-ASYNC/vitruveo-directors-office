@@ -1,6 +1,6 @@
 # Vitruveo — Independent Network Development
 
-**Public development workspace maintained by Old Jug (UNI-ASYNC).**
+**Public development workspace maintained by UNI-ASYNC.**
 
 I'm interested in contributing practical improvements to Vitruveo's open-source ecosystem. This is **not an effort to take over the chain, its repositories, or its existing maintainers' responsibilities**. It's a place to show the work I see a need for, test ideas independently, and offer fixes for upstream review.
 
