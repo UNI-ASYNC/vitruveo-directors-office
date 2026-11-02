@@ -10,9 +10,9 @@ This is a public planning workspace, not an assertion that VF has approved every
 
 ## All issues and proposals
 
-**[View the complete issue tracker — all issues, including new additions](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue)**
+**[View the public issue tracker — including new additions](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue)**
 
-The issues below are the current public register. These are proposals, audits, and evidence reviews—not claims that the work is approved or complete.
+The issues below are the current public development register. These are proposals and maintenance tasks—not claims that the work is approved or complete.
 
 | Issue | Topic | Purpose |
 | --- | --- | --- |
@@ -22,9 +22,7 @@ The issues below are the current public register. These are proposals, audits, a
 | [#4 — Verifiable client releases](issues/4) | Source and releases | Establish reproducible builds and transparent change history |
 | [#5 — Node-owner handbook](issues/5) | Documentation and support | Publish instructions and a clear operator support route |
 | [#6 — Progress, decisions and blockers](issues/6) | Public coordination | Track evidence, ownership, decisions and next steps |
-| [#7 — Mainnet precompile evidence](issues/7) | Developer compatibility | Review Shizazles mainnet tests and documentation gaps |
 | [#8 — Website and documentation audit](issues/8) | Public-facing repairs | Investigate broken links, missing navigation and developer docs |
-| [#9 — AI Chat and MCP audit](issues/9) | AI and developer tools | Check chat loading, MCP configuration, 17 tools and linked pages |
 
 **[Browse open issues](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue+is%3Aopen)** · **[Browse closed issues](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue+is%3Aclosed)** · **[Submit a new issue](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues/new)**
 
