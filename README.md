@@ -1,50 +1,50 @@
-# Vitruveo — Director's Office & Validator Recovery
+# Vitruveo — Independent Network Development
 
-**Public planning workspace maintained by Old Jug (UNI-ASYNC).**
+**Public development workspace maintained by Old Jug (UNI-ASYNC).**
 
-This repository tracks proposals for practical Vitruveo network improvements: easier node installation, safe updates, operator-hosted RPC/API services, clear documentation, and verifiable software releases.
+I'm interested in contributing practical improvements to Vitruveo's open-source ecosystem. This is **not an effort to take over the chain, its repositories, or its existing maintainers' responsibilities**. It's a place to show the work I see a need for, test ideas independently, and offer fixes for upstream review.
 
-The purpose is simple: **show what is proposed, what information is needed, who can help, and what has been verified complete.**
+My focus is making Vitruveo easier for independent operators to install, maintain, verify, and recover, while exploring options for transparent, shared validator-operator governance. Governance changes are **proposals for discussion**, not claims of existing authority or approval.
 
-This is a public planning workspace, not an assertion that VF has approved every proposal or granted a formal operational mandate.
+## Public development proposals
 
-## All issues and proposals
-
-**[View the public issue tracker — including new additions](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue)**
-
-The issues below are the current public development register. These are proposals and maintenance tasks—not claims that the work is approved or complete.
+**[View the current public issue tracker](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue)**
 
 | Issue | Topic | Purpose |
 | --- | --- | --- |
 | [#1 — Guided node installation](issues/1) | Validator setup | Make node setup understandable and repeatable |
-| [#2 — Safe node updates](issues/2) | Validator maintenance | Give node owners a tested, guided update process |
+| [#2 — Safe node updates](issues/2) | Validator maintenance | Give operators a tested, guided update and recovery process |
 | [#3 — Independent RPC/API endpoints](issues/3) | Network infrastructure | Enable independently hosted Vitruveo node services |
-| [#4 — Verifiable client releases](issues/4) | Source and releases | Establish reproducible builds and transparent change history |
-| [#5 — Node-owner handbook](issues/5) | Documentation and support | Publish instructions and a clear operator support route |
-| [#6 — Progress, decisions and blockers](issues/6) | Public coordination | Track evidence, ownership, decisions and next steps |
-| [#8 — Website and documentation audit](issues/8) | Public-facing repairs | Investigate broken links, missing navigation and developer docs |
+| [#4 — Verifiable client releases](issues/4) | Source and releases | Establish reproducible builds and transparent release identification |
+| [#5 — Node-owner handbook](issues/5) | Documentation and support | Publish reliable instructions and an operator support route |
+| [#6 — Progress, decisions and blockers](issues/6) | Public coordination | Record proposals, decisions, dependencies, and tested results |
+| [#8 — Website and documentation audit](issues/8) | Public-facing repairs | Track broken links, legacy redirects, navigation and developer-documentation corrections |
 
-**[Browse open issues](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue+is%3Aopen)** · **[Browse closed issues](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue+is%3Aclosed)** · **[Submit a new issue](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues/new)**
+### Retired public issue references
 
-## How to follow the work
+These numbers are retained **only for orientation**. The original public issue pages have been removed and the links no longer work. They are **not open tasks** in this repository.
 
-- Open the [complete issue tracker](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues?q=is%3Aissue) to see the current list, including issues added after this README was last edited.
-- See the **Vitruveo — Director's Office & Validator Recovery** GitHub Project for board-style status once issues are linked.
-- Read each issue's **Needed to start** section to see which technical records or decisions would help the work advance.
-- A proposal is **not** a completed or authorized production change. Closure should cite tests, release evidence or documentation.
+| Former issue | Topic | Status |
+| --- | --- | --- |
+| **#7 — Mainnet precompile test evidence** | Historical Shizazles mainnet compatibility tests | **Retired from public tracker; research preserved in private records** |
+| **#9 — Website, AI Chat and MCP functionality** | Historical external observations and developer-tool checks | **Retired from public tracker; research preserved in private records** |
 
-## Working principles
+The current public website, redirect, and documentation repair work remains in [#8](issues/8). No links to removed issues are provided here.
 
-- Begin with practical validator and network needs, collaborate with the CTO and current maintainers, and verify before changing production.
-- Make it easy for node owners to install, update, monitor and recover their own systems.
-- Keep consensus keys and public RPC workloads separated wherever appropriate.
-- Prefer safe, independently verifiable releases with operator notice and approved network upgrade procedures.
-- Respect existing intellectual-property rights and open-source licenses.
-- Share public-safe updates here and link them from existing VF Discord discussions.
-- **Do not post private keys, seed phrases, credentials, sensitive infrastructure access or unpatched exploit details in public issues.**
+## Where I want to help
 
-## How to contribute
+- Make node and validator installation repeatable for qualified operators.
+- Improve backup, recovery, monitoring, and safe software updates.
+- Verify public source and releases against the authoritative production baseline before proposing compatibility-sensitive changes.
+- Support independently operated RPC endpoints and clear developer documentation.
+- Explore **validator-operator governance**: possible voting procedures, release review, and shared operational stewardship. This is separate from how validators reach blockchain consensus, and would require agreement and proper authority before implementation.
 
-If you operate a node, develop applications, maintain code, or support the network, comment on the relevant proposal with requirements, documentation or testing feedback. Please do not post confidential information.
+## Current starting point
 
-Production access, decision-making roles, approvals and issue ownership will be recorded only after the responsible parties confirm them.
+The immediate technical dependency is identifying the authoritative production release or source commit and the supported node-installation procedure. With that established, contributors can build and test improvements independently, then offer pull requests to the appropriate Vitruveo maintainers.
+
+## Working with maintainers
+
+These are **independent suggestions, not assigned Vitruveo tasks**. I'll respect the current maintainers' review process and submit relevant fixes through forks and pull requests. Nothing here authorizes production deployments, changes to consensus or validator membership, transfer of control, or use of privileged signing keys.
+
+Please use [the public issues](https://github.com/UNI-ASYNC/vitruveo-directors-office/issues) for constructive, non-sensitive feedback. Do not publish credentials, private keys, or undisclosed vulnerability details.
