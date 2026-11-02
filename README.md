@@ -18,7 +18,7 @@ My focus is making Vitruveo easier for independent operators to install, maintai
 | [#4 — Verifiable client releases](issues/4) | Source and releases | Establish reproducible builds and transparent release identification |
 | [#5 — Node-owner handbook](issues/5) | Documentation and support | Publish reliable instructions and an operator support route |
 | [#6 — Progress, decisions and blockers](issues/6) | Public coordination | Record proposals, decisions, dependencies, and tested results |
-| [#8 — Website and documentation audit](issues/8) | Public-facing repairs | Track broken links, legacy redirects, navigation and developer-documentation corrections |
+| [🚨 #8 — HIGH PRIORITY: Website and documentation audit](issues/8) | Public-facing repairs | Verify and fix broken links, legacy redirects, navigation and developer-documentation problems; some repairs require maintainer access |
 
 ### Retired public issue references
 
