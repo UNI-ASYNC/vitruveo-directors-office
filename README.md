@@ -20,6 +20,10 @@ My focus is making Vitruveo easier for independent operators to install, maintai
 | [#6 — Progress, decisions and blockers](issues/6) | Public coordination | Record proposals, decisions, dependencies, and tested results |
 | [🚨 #8 — HIGH PRIORITY: Website and documentation audit](issues/8) | Public-facing repairs | Verify and fix broken links, legacy redirects, navigation and developer-documentation problems; some repairs require maintainer access |
 
+### Dated public technical clarifications
+
+**[November 4, 2026 — AI Wars Trends settlement observation](TECHNICAL-CLARIFICATIONS-2026-11-04.md)** — a bounded chain-1490 read-only scan documents actual betting, posted results, winning-stake returns, dead-address transfers and prize minting. It corrects reliance on the older contract's `Claimed` event; it does not establish game-result fairness or official adoption.
+
 ### Retired public issue references
 
 These numbers are retained **only for orientation**. The original public issue pages have been removed and the links no longer work. They are **not open tasks** in this repository.
