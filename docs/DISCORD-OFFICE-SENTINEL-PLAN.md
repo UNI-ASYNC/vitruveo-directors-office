@@ -24,6 +24,7 @@ This is separate from `oldjug/pro-file-nft` and its PFN Sentinel. Do not modify,
 ## Initial target layout — not yet approved for application
 - Keep `#rules`, `#general`, `#network-status`, existing Forum, voice channels, all posts and channel IDs.
 - Add `#office-information` (public read-only), `#office-progress` (public read-only).
+- Add `#beef-room` (public text, open discussion) for personal disputes, heated back-and-forth, and off-topic arguments. The public subject-based Forum remains for substantive questions, evidence, and actionable subjects. Redirect escalating spats to this room rather than derailing forum threads; moving must not be used to suppress substantive criticism. Allow profanity, strong disagreement and criticism, but not credible threats, doxxing, targeted harassment, scams, or other Discord policy violations. No automatic bans or deletion on ordinary disagreement. Keep the room out of GitHub mirroring unless a separable actionable issue is identified.
 - Optional `#about-profile-nft` (short neutral explanation: potential external user of Vitruveo, conditional technical evaluation; no promise).
 - Role-gated `#node-holder-discussion`, `#validator-operations`; separate verified node-holder and active-validator roles, no automatic on-chain proof assumptions.
 - Staff-only `#office-workroom`, `#moderation-log` if actually needed.
