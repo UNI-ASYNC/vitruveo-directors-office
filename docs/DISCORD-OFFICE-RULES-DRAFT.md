@@ -1,28 +1,38 @@
-# Vitruveo Director's Office — Discord Rules (Draft)
+# Vitruveo Director's Office — Server Rules and Welcome Screening (Draft)
 
-**For `#rules` — Old Jug style**
+These are the **main server rules**, intended for the existing `#rules` channel and Discord Community's member-entry rules screening. Use the short numbered rules for the join screen, with the welcome statement in `#rules`.
 
-Welcome to the Vitruveo Director's Office. This is a public place to ask questions, bring receipts, criticize decisions, argue about the chain, and help get problems fixed. No one has to agree with Old Jug, the Foundation, validators, developers, or each other.
+## Welcome message — Old Jug
 
-**1. Say what you've got to say.** Tough questions, complaints, criticism, profanity, unpopular opinions, and dissent are welcome. Don't expect a ban because somebody doesn't like your point.
+**Welcome to the Vitruveo Director's Office.**
 
-**2. Bring receipts when you can.** If you're calling something broken, misleading, or shady, show what you saw, when it happened, and where others can check. Separate what you *know* from what you *suspect*. No manufactured evidence or pretending speculation is established fact.
+This is a public community office. Ask questions. Challenge the story. Bring complaints, problems, ideas, evidence, and solutions. You do **not** have to agree with me, network leadership, node holders, or anyone else to participate. I'm looking for useful information and ways to move this blockchain forward.
 
-**3. Keep the working threads useful.** The `what-are-your-concerns` Forum is for **subjects**, not personal case numbers. Discuss the issue there. When it turns into two people trading insults instead of facts, take the spat to `#beef-room`. Legitimate criticism and evidence stay in the subject thread.
+If you have a problem, let's hear it. If you have a solution, even better. If you bring fabricated baloney, expect somebody to check it and show where it doesn't hold up. **Nobody gets kicked out just for what they think.**
 
-**4. The beef room is for beef.** Argue, disagree, swear, and get it off your chest in `#beef-room`. Don't chase people into DMs or other channels. This isn't a license for threats, discriminatory abuse, targeted harassment, stalking, or dogpiling.
+I don't want to delete people's opinions. I also don't want working discussions buried under personal arguments. That's why there's a **#beef-room**. If the conversation turns into a shouting match, take the personal spat there. Leave the main Forum open for the subject and its evidence.
 
-**5. Don't put people or wallets at risk.** No threats, doxxing, exposing private correspondence or personal information without permission, scams, fake support, malicious links, seed phrases, private keys, passwords, or undisclosed exploit instructions. Report sensitive security issues privately to an appropriate responsible contact.
+Not every post becomes a GitHub issue. I'll take forward what I can document and act on, and leave the rest for public discussion.
 
-**6. Don't bury the office in garbage.** No spam floods, mass mentions, bot abuse, impersonation, or repetitive advertising. Use the right room and give other people space to answer.
+— Old Jug
 
-**7. A discussion is not a verdict.** Anyone can raise a subject. Old Jug and office contributors decide what can be verified, what needs a response, what goes into GitHub, and what isn't actionable. No promise that every complaint will get a ticket or that current network key holders will act.
+## Community join rules (short and practical)
 
-**8. No hiding the outcome.** When an issue is accepted for work, link the public GitHub record when safe, distinguish proposed from confirmed work, and report results or blockers. Don't mark something fixed just because somebody said so.
+1. **Speak your mind.** Criticism, disagreement, hard questions, and profanity are allowed. Nobody has to agree with the director or the Foundation.
+2. **Keep the useful channels useful.** Post each main concern as a **subject** in `what-are-your-concerns`. Stay with the facts, questions, and solutions. Take personal quarrels and off-topic back-and-forth to `#beef-room`.
+3. **Bring evidence, not made-up facts.** Opinions and suspicions are fine when labeled as such. Claims presented as fact are open to checks and correction. Don't fabricate evidence or impersonate sources.
+4. **Beef is allowed; real harm isn't.** Swearing and heated arguments aren't grounds for removal. No credible threats, doxxing, stalking, discriminatory abuse, sustained targeted harassment, scams, or malicious links. Don't chase people across channels or into DMs.
+5. **Respect people's security and the network.** Never publish seed phrases, private keys, credentials, private personal data, or sensitive vulnerability instructions. Report sensitive technical security matters through a private responsible channel.
+6. **Don't flood the place.** No spam, repeated mass pings, scam promotions, impersonation, or message floods. Make room for everyone to speak.
+7. **This office records work, not automatic verdicts.** Logical input, reproducible problems, and proposed solutions may become public GitHub issues. A post is not proof, and opening an issue doesn't mean it's fixed.
 
-**9. Keep the rules consistent.** Criticism of the director is allowed too. Moderation is for real safety and platform-rule violations, not protecting egos. Where possible, redirect a conversation before restricting participation. Serious or repeated abuse can still be removed under Discord's rules.
+**Moderation principle:** Redirect first, correct claims publicly when possible, and preserve substantive discussion. No automated deletion or banning for disagreement. Serious safety violations may still require restricting content or access to comply with Discord policies and protect people.
 
-**Bottom line:** Bring the problem, bring the evidence, bring an idea—or bring your beef to the beef room. This office exists to get things out in the open and see what can actually be done.
+## Setup notes — not for the member join screen
 
----
-**Implementation note (not part of public rules):** Retain the current `#rules` channel and replace/update its displayed rules only after director approval. Preserve old rule text in a local audit. Do not grant automated punishment authority. Forum subjects can be referred to `#beef-room` without deleting substantive claims. Verify Discord Community server rules screening / AutoMod separately; don't claim all member access is unconditionally unrestricted.
+- This replaces the previous broad draft; it is **not** a separate `#beef-room` rulebook.
+- Keep the existing `#rules` channel ID and Discord Community designation.
+- Configure Discord Rules Screening/member entry using these concise numbered rules, after director approval and checking Discord's supported limit/UI.
+- Publish the welcome statement in `#rules` with `#beef-room` and Forum links once those channels are present.
+- No automatic moderation bot actions from this policy. Do not delete existing discussions or impose bans as part of setup. Platform-required enforcement is a separate incident response.
+- GitHub PR is a proposal only. No live Discord changes are made by creating this file.
