@@ -14,6 +14,16 @@ This is UNI-ASYNC's current independent technical recommendation for improving V
 
 **Node holders, operators, developers, and maintainers are invited to review the recommendation and contribute practical feedback.**
 
+## Public development issues
+
+| Issue | Topic | Purpose |
+| --- | --- | --- |
+| [#4 — Verifiable client releases](issues/4) | Source and releases | Establish reproducible builds and transparent release identification |
+| [#5 — Node-owner handbook](issues/5) | Documentation and support | Publish reliable instructions and an operator support route |
+| [#6 — Progress, decisions and blockers](issues/6) | Public coordination | Record proposals, decisions, dependencies, and tested results |
+| [🚨 #8 — HIGH PRIORITY: Website and documentation audit](issues/8) | Public-facing repairs | Verify and fix broken links, legacy redirects, navigation and developer-documentation problems; some repairs require maintainer access |
+
+
 ### Dated public technical clarifications
 
 **[November 4, 2026 — AI Wars Trends settlement observation](TECHNICAL-CLARIFICATIONS-2026-11-04.md)** — a bounded chain-1490 read-only scan documents actual betting, posted results, winning-stake returns, dead-address transfers and prize minting. It corrects reliance on the older contract's `Claimed` event; it does not establish game-result fairness or official adoption.
