@@ -100,3 +100,27 @@ This read-only audit checks the nine Forum subjects, launch posts, public text c
 **Discord Rules Screening is different from posting #rules.** Discord removed public documentation for reading/editing the Membership Screening object using bots. If the audit prints a missing screening flag, the supported path is Discord Server Settings > Safety Setup > DM and Spam Protection > Members must accept rules before they can talk or DM. Do not attempt undocumented endpoints from the bot.
 
 **Temporary guild-wide bot permissions:** The bot cannot safely remove permissions from its own managed integration role through the bot token. The audit will report them and the role's managed/editable status. Never change @everyone or protected holder/staff roles to reduce the bot's powers. A server owner can adjust the bot's granted guild permissions in Discord server settings/Integrations or reauthorize the app with a smaller permission set, after verifying that ongoing Sentinel tasks will still work. Retain View Channel, Send Messages, Read Message History, Create Public Threads and Send Messages in Threads as needed; do not leave Administrator enabled.
+
+## Opt-in Beef Room referee — 5-minute Forum-only cooldown
+
+The `beef-referee.mjs` listener is separate from the Profile NFT and Network Status bots. It is **not started automatically** by launch scripts. It monitors messages only in public threads under `what-are-your-concerns`, and looks for sustained reciprocal *personal insults*, not general profanity, criticism, or unpopular opinions. It warns people to use the public `#beef-room`. After continued insults, it sets **300-second per-user slowmode on only that Forum thread**, for 300 seconds, then restores the previous rate limit. Everyone in that affected thread is slowed during that period, not only the two participants; the rest of the Forum and the Beef Room remain open. No Discord guild-wide member timeouts, deletes, bans or automatic thread locks. This is a **basic heuristic**, not an AI understanding of discussion context; review its real-world behavior before deploying unattended.
+
+Prerequisites: the Discord Developer Portal must have the Office Sentinel's **Message Content Intent enabled** (also enabled in this code). The bot needs `Manage Threads`, `Send Messages in Threads`, and `View Channel` in the Forum. These can be granted to the bot (only) with the `--setup` option while temporary Manage Channels still exists. Do not use the Profile NFT bot token.
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+# The token and DISCORD_GUILD_ID must still be set privately in this session
+$env:DISCORD_BEEF_REFEREE_CONFIRM = "SETUP_FORUM_ONLY_REFEREE"
+node .\beef-referee.mjs --setup
+Remove-Item Env:DISCORD_BEEF_REFEREE_CONFIRM
+
+node .\beef-referee.mjs --check
+
+# Only after reviewing the behavior and confirming Message Content Intent:
+$env:DISCORD_BEEF_REFEREE_CONFIRM = "RUN_FORUM_ONLY_REFEREE"
+node .\beef-referee.mjs --run
+```
+
+Keep the PowerShell window running to monitor messages; Ctrl+C stops the listener. The local `beef-referee-state.json` is an operational restore ledger: **do not delete it while cooldowns remain active**. On restart, the bot restores expired cooldowns when it reconnects. Since the timer is not a Discord-native timed restriction, a server restart/outage may prolong slowmode until the process restarts. The listener does not work when the PC is off; deploy a dedicated long-running worker later if continuous coverage is needed. Only the Office Sentinel needs access. Run the usual read-only audit before removing the temporary Manage Channels/Manage Roles privileges; the referee needs Manage Threads while it is operational.
