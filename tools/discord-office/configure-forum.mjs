@@ -26,8 +26,29 @@ try{
  if(!forum||forum.guildId!==GUILD||forum.type!==ChannelType.GuildForum||forum.name!==NAME)
   throw new Error("Expected Forum ID/name/type not found. No changes.");
  const member=await guild.members.fetchMe();
- if(!forum.permissionsFor(member)?.has(P.ManageChannels))
-  throw new Error("Office Sentinel needs Manage Channels in this Forum to edit its settings. No changes made.");
+ const guildGrant=member.permissions.has(P.ManageChannels);
+ const forumGrant=forum.permissionsFor(member)?.has(P.ManageChannels)===true;
+ console.log("Manage Channels — server:",guildGrant?"ALLOW":"MISSING");
+ console.log("Manage Channels — Forum:",forumGrant?"ALLOW":"DENIED");
+ if(!forumGrant){
+   const everyone=forum.permissionOverwrites.cache.get(guild.roles.everyone.id);
+   const memberOverride=forum.permissionOverwrites.cache.get(member.id);
+   const blockedRoles=[...member.roles.cache.values()].filter(r=>{
+     const o=forum.permissionOverwrites.cache.get(r.id);
+     return o?.deny.has(P.ManageChannels);
+   }).map(r=>r.name);
+   console.log("Forum category:",forum.parent?.name||"(none)");
+   console.log("@everyone Forum deny:",everyone?.deny.has(P.ManageChannels)===true);
+   console.log("Office Sentinel Forum deny:",memberOverride?.deny.has(P.ManageChannels)===true);
+   console.log("Office Sentinel Forum allow:",memberOverride?.allow.has(P.ManageChannels)===true);
+   console.log("Bot role Forum denies:",blockedRoles.join(", ")||"(none)");
+   console.log("No changes made. A bot cannot grant itself a missing permission.");
+   console.log(guildGrant
+     ?"NEXT: Server owner must allow Manage Channels specifically for Office Sentinel on this Forum, or remove a blocking override."
+     :"NEXT: Server owner must first grant Manage Channels to the Office Sentinel's server integration; channel permission alone cannot grant an absent guild permission.");
+   if(mode==="--apply")throw new Error("Stopped before writing: Manage Channels not effective in Forum.");
+   console.log("CHECK ONLY; settings preview is still available below.");
+ }
  const previous=forum.availableTags.map(t=>({
    id:t.id,name:t.name,moderated:t.moderated,
    ...(t.emojiId?{emojiId:t.emojiId}:t.emojiName?{emojiName:t.emojiName}:{})
