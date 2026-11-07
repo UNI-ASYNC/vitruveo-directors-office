@@ -13,7 +13,9 @@ const CONFIRM="PUBLISH_SHARED_PARTICIPATION_GUIDE";
 const mode=process.argv[2]||"--preview";
 if(!["--preview","--check","--apply"].includes(mode))
  throw new Error("Use --preview, --check or --apply");
-// Git on Windows may check out README.md with CRLF line endings.\n// Normalize before matching Markdown headings so Windows and Linux agree.\nconst readme=(await readFile(new URL("../../README.md",import.meta.url),"utf8")).replace(/\\r\\n?/g,"\\n");
+// Git on Windows may check out README.md with CRLF line endings.
+// Normalize before matching Markdown headings so Windows and Linux agree.
+const readme=(await readFile(new URL("../../README.md",import.meta.url),"utf8")).replace(/\r\n?/g,"\n");
 const s=readme.indexOf(START);
 const e=readme.indexOf(END,s+START.length);
 if(s<0||e<0)throw new Error("Participation section not found in local README.md even after line-ending normalization. Run git pull and check the README heading; nothing posted.");
