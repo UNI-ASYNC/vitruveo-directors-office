@@ -83,3 +83,20 @@ Remove-Item Env:DISCORD_OFFICE_FORUM_CONFIRM
 ```
 
 Requires the private Office Sentinel bot token and guild ID in the shell. The bot needs **View Channel, Create Public Threads, Send Messages in Threads** in the existing `what-are-your-concerns` Forum. It will refuse to proceed rather than modify permissions or grant itself access. It scans active and most recent 100 public archived threads to avoid duplicates, skips matched subject titles, and creates only missing discussions. Older archived threads beyond the returned 100 may need audit before rerunning. All nine subjects are in `forum-subjects.mjs`. Name is `Oldjug` (no space).
+
+## Final security audit + screening limitation
+
+Run in the existing shell with the **Office Sentinel** token and guild ID:
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+node .\audit-office.mjs
+```
+
+This read-only audit checks the nine Forum subjects, launch posts, public text channel permissions, four restricted channels, verified-role access, the Discord membership screening feature flag, and the Office Sentinel's remaining guild role privileges. Errors and warnings are reported without making changes. The older launch posts may still use the prior spelling "Old Jug"; the audit recognizes those as installed and flags them for correction rather than falsely claiming they're missing.
+
+**Discord Rules Screening is different from posting #rules.** Discord removed public documentation for reading/editing the Membership Screening object using bots. If the audit prints a missing screening flag, the supported path is Discord Server Settings > Safety Setup > DM and Spam Protection > Members must accept rules before they can talk or DM. Do not attempt undocumented endpoints from the bot.
+
+**Temporary guild-wide bot permissions:** The bot cannot safely remove permissions from its own managed integration role through the bot token. The audit will report them and the role's managed/editable status. Never change @everyone or protected holder/staff roles to reduce the bot's powers. A server owner can adjust the bot's granted guild permissions in Discord server settings/Integrations or reauthorize the app with a smaller permission set, after verifying that ongoing Sentinel tasks will still work. Retain View Channel, Send Messages, Read Message History, Create Public Threads and Send Messages in Threads as needed; do not leave Administrator enabled.
