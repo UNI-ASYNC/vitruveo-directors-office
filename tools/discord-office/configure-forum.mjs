@@ -43,9 +43,21 @@ try{
    console.log("Office Sentinel Forum allow:",memberOverride?.allow.has(P.ManageChannels)===true);
    console.log("Bot role Forum denies:",blockedRoles.join(", ")||"(none)");
    console.log("No changes made. A bot cannot grant itself a missing permission.");
-   console.log(guildGrant
-     ?"NEXT: Server owner must allow Manage Channels specifically for Office Sentinel on this Forum, or remove a blocking override."
-     :"NEXT: Server owner must first grant Manage Channels to the Office Sentinel's server integration; channel permission alone cannot grant an absent guild permission.");
+   if(!guildGrant){
+     // Reauthorization updates the managed bot role; the existing bot cannot give
+     // itself this guild-level permission. Preserve every permission it already holds.
+     const required=P.ViewChannel|P.SendMessages|P.ReadMessageHistory|
+       P.CreatePublicThreads|P.SendMessagesInThreads|P.ManageThreads|P.ManageChannels;
+     const permissionMask=member.permissions.bitfield|required;
+     const authorize="https://discord.com/oauth2/authorize?client_id="+client.user.id+
+       "&scope=bot&permissions="+permissionMask.toString()+
+       "&guild_id="+GUILD+"&disable_guild_select=true";
+     console.log("NEXT: Open this link while signed in as the owner of Vitruveo Directors Office:");
+     console.log(authorize);
+     console.log("Authorize the EXISTING Office Sentinel, not a new bot. Return to PowerShell and run --check.");
+   }else{
+     console.log("NEXT: The server grants Manage Channels but a Forum override blocks it; inspect the Forum permissions as the owner.");
+   }
    if(mode==="--apply")throw new Error("Stopped before writing: Manage Channels not effective in Forum.");
    console.log("CHECK ONLY; settings preview is still available below.");
  }
