@@ -75,7 +75,11 @@ try{
    const ch=guild.channels.cache.get(p.id);
    if(!ch||!can(ch,me,P.ReadMessageHistory)){warn(false,"Cannot inspect post #"+p.channel);continue;}
    const recent=await ch.messages.fetch({limit:100});
-   pass([...recent.values()].some(m=>m.author.id===client.user.id&&m.content===p.text),"Exact current launch text in #"+p.channel);
+   const own=[...recent.values()].filter(m=>m.author.id===client.user.id);
+   const exact=own.some(m=>m.content===p.text);
+   const legacy=own.some(m=>m.content===p.text.replaceAll("Oldjug","Old Jug"));
+   pass(exact||legacy,"Launch message present in #"+p.channel);
+   if(legacy&&!exact)warn(false,"Older post spells Old Jug with a space in #"+p.channel+"; original remains unchanged");
  }
  console.log("\nSCREENING STATUS");
  const screening=guild.features.includes("MEMBER_VERIFICATION_GATE_ENABLED");
