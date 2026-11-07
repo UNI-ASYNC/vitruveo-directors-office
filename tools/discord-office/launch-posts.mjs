@@ -4,7 +4,7 @@ export const posts = [
   {
     channel:"about-the-office", id:"1568441575502119058",
     text:`**🏛️ ABOUT THE OFFICE**
-This is the public Vitruveo Director's Office, led by Old Jug for network and node-validator matters.
+This is the public Vitruveo Director's Office, led by Oldjug for network and node-validator matters.
 
 Ask hard questions, bring evidence, point out problems, or offer a solution. Independent research and development are maintained through UNI-ASYNC. The office does not claim custody of the chain's operating keys.
 
@@ -17,14 +17,14 @@ Discussion belongs in **what-are-your-concerns**; personal spats belong in **#be
     text:`**🏛️ OFFICE ANNOUNCEMENTS — INAUGURATION**
 **The Vitruveo Director's Office is open.**
 
-I'm Old Jug. Bring your questions, criticisms, complaints, facts, and ideas. Nobody needs to agree with me or anyone running this chain.
+I'm Oldjug. Bring your questions, criticisms, complaints, facts, and ideas. Nobody needs to agree with me or anyone running this chain.
 
 If it's broken, show us. If you've got a solution, even better. We're here to sort out what can be verified and worked on—not to bury difficult questions.
 
 Use **what-are-your-concerns** for each subject. Take personal arguments to **#beef-room**. Track actionable work in **#office-progress**.
 
 **Bring the problem. Bring the receipts. Let's get some work done.**
-— Old Jug`
+— Oldjug`
   },
   {
     channel:"beef-room", id:"1568441577523904620",
@@ -49,7 +49,7 @@ A public discussion does not automatically become an issue, and an open issue is
   {
     channel:"rules", id:"1568292107980906588",
     text:`**📜 SERVER RULES**
-**Speak your mind.** Criticism, tough questions, and profanity are fine. No one needs to agree with Old Jug or the Foundation.
+**Speak your mind.** Criticism, tough questions, and profanity are fine. No one needs to agree with Oldjug or the Foundation.
 
 **Keep subject threads useful.** One Forum thread per subject. Bring facts and solutions. Move personal arguments to **#beef-room**.
 
