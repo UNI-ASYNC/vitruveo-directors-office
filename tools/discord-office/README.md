@@ -66,3 +66,20 @@ Remove-Item Env:DISCORD_OFFICE_LAUNCH_CONFIRM
 ```
 
 For fresh PowerShell sessions, enter the private token locally with `Read-Host -AsSecureString`; never put it in a script or share it. Temporary **Manage Channels** permission is necessary only if the bot currently lacks posting rights in one of the five channels. Read-only `--check` reports that. The installer **does not** alter Community Rules Screening/onboarding, which is distinct from posting text in #rules and may require a separate supported workflow. Review each post in Discord, then remove temporary Manage Channels/Manage Roles. Bot tokens should remain only in the current shell environment, cleared afterward.
+
+## Subject-based public Forum (recommended)
+
+One public Forum discussion per broad **subject**, with links to related GitHub issues where appropriate. This does **not** create a thread per issue and does not touch the restricted channels.
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+node .\seed-forum.mjs --plan
+node .\seed-forum.mjs --check
+$env:DISCORD_OFFICE_FORUM_CONFIRM = "CREATE_OFFICE_FORUM_SUBJECTS"
+node .\seed-forum.mjs --apply
+Remove-Item Env:DISCORD_OFFICE_FORUM_CONFIRM
+```
+
+Requires the private Office Sentinel bot token and guild ID in the shell. The bot needs **View Channel, Create Public Threads, Send Messages in Threads** in the existing `what-are-your-concerns` Forum. It will refuse to proceed rather than modify permissions or grant itself access. It scans active and most recent 100 public archived threads to avoid duplicates, skips matched subject titles, and creates only missing discussions. Older archived threads beyond the returned 100 may need audit before rerunning. All nine subjects are in `forum-subjects.mjs`. Name is `Oldjug` (no space).
