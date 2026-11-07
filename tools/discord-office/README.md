@@ -45,3 +45,24 @@ Launch content is in `launch-posts.mjs` with five channel-specific messages. Eac
 5. Inspect the five messages in Discord, pin useful launch posts manually, configure Community Rules Screening separately, and remove unnecessary setup permissions (Manage Roles/Manage Channels).
 
 The Discord publisher sends only native text, suppresses link previews, does not create PDFs or files, and will not replace old posts. It does **not** run or modify the Profile NFT Sentinel.
+
+## Preferred: ONE PowerShell-driven office launch
+
+`launch-office.mjs` is the replacement for the manual-permission procedure. It verifies guild and channel IDs first, makes only **bot-specific posting permission overwrites** on the five launch channels if necessary, then sends the short native posts, skipping duplicates. Existing public/staff access rules, messages, channels, Profile NFT, and Network Status bot are not changed. **Do not run the older publisher as well.**
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+node .\launch-office.mjs --plan
+```
+
+When approved, in the same PowerShell session containing `DISCORD_GUILD_ID` and the privately entered `DISCORD_BOT_TOKEN`, run:
+```powershell
+node .\launch-office.mjs --check
+$env:DISCORD_OFFICE_LAUNCH_CONFIRM = "APPROVE_OFFICE_LAUNCH_1020154218029531197"
+node .\launch-office.mjs --apply
+Remove-Item Env:DISCORD_OFFICE_LAUNCH_CONFIRM
+```
+
+For fresh PowerShell sessions, enter the private token locally with `Read-Host -AsSecureString`; never put it in a script or share it. Temporary **Manage Channels** permission is necessary only if the bot currently lacks posting rights in one of the five channels. Read-only `--check` reports that. The installer **does not** alter Community Rules Screening/onboarding, which is distinct from posting text in #rules and may require a separate supported workflow. Review each post in Discord, then remove temporary Manage Channels/Manage Roles. Bot tokens should remain only in the current shell environment, cleared afterward.
