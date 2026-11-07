@@ -26,7 +26,7 @@ if(process.env.DISCORD_GUILD_ID!==GUILD || !process.env.DISCORD_BOT_TOKEN)
  throw new Error("Set DISCORD_GUILD_ID and DISCORD_BOT_TOKEN privately.");
 if(mode==="--run" && process.env.DISCORD_BEEF_REFEREE_CONFIRM!=="RUN_FORUM_ONLY_REFEREE")
  throw new Error("Missing DISCORD_BEEF_REFEREE_CONFIRM=RUN_FORUM_ONLY_REFEREE");
-const client=new Client({intents:[GatewayIntentBits.Guilds,GatewayIntentBits.GuildMessages,GatewayIntentBits.MessageContent]});
+const client=new Client({intents:mode==="--run" ? [GatewayIntentBits.Guilds,GatewayIntentBits.GuildMessages,GatewayIntentBits.MessageContent] : [GatewayIntentBits.Guilds]});
 const events=new Map(),lastWarned=new Map();
 let state={};let saving=Promise.resolve();let restoring=false;
 const directed=/(\byou\b|\byour\b|\byou're\b|<@!?\d+>)/i;
@@ -129,7 +129,7 @@ try{
  for(const bit of required){
    if(!forum[0].permissionsFor(me)?.has(bit))throw new Error("Missing Forum permission "+String(bit));
  }
- if(!client.options.intents.has(GatewayIntentBits.MessageContent))throw new Error("Message content intent is required");
+ if(mode==="--run" && !client.options.intents.has(GatewayIntentBits.MessageContent))throw new Error("Message Content intent required to run live.");
  console.log("REFEREE",mode,"Forum",forum[0].id,"Beef Room",beef[0].id,
    "cooldown 300 seconds in affected thread only; never server timeout");
  if(mode==="--check"){
@@ -144,4 +144,4 @@ try{
    const stop=()=>{clearInterval(interval);client.destroy();process.exit(0);};
    process.once("SIGINT",stop);process.once("SIGTERM",stop);
  }
-}catch(e){console.error("REFEREE ERROR:",e.message);client.destroy();process.exitCode=1;}
+}catch(e){console.error("REFEREE ERROR:",e.message);if(String(e.message).includes("Used disallowed intents")) console.error("ENABLE MESSAGE CONTENT INTENT: Discord Developer Portal > Applications > Vitruveo Office Sentinel > Bot > Privileged Gateway Intents > Message Content Intent > ON > Save Changes. Then retry --run.");client.destroy();process.exitCode=1;}
