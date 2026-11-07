@@ -116,6 +116,21 @@ try{
  if(forum.length!==1||beef.length!==1)throw new Error("Expected exactly one intended Forum and Beef Room.");
  const me=await guild.members.fetchMe();
  const required=[P.ViewChannel,P.SendMessagesInThreads,P.ManageThreads];
+ const missingGuild=required.filter(p=>!me.permissions.has(p));
+ if(missingGuild.length){
+   const mask=P.ViewChannel|P.ReadMessageHistory|P.SendMessages|P.CreatePublicThreads|P.SendMessagesInThreads|P.ManageThreads;
+   const url="https://discord.com/oauth2/authorize?client_id="+client.user.id+
+     "&scope=bot&permissions="+mask.toString()+"&guild_id="+GUILD+"&disable_guild_select=true";
+   console.error("MISSING BOT ROLE PERMISSIONS: "+missingGuild.map(p=>p===P.ManageThreads?"Manage Threads":p===P.SendMessagesInThreads?"Send Messages in Threads":"View Channel").join(", "));
+   console.error("Discord prevents the Sentinel from granting itself a permission it does not hold.");
+   console.error("SERVER OWNER: Reauthorize this exact Office Sentinel with these permissions:");
+   console.error(url);
+   console.error("Open the link in a browser signed into the Discord server owner account; select the existing Vitruveo Directors Office.");
+   console.error("Then rerun --check; --setup is only needed if parent Forum overwrites still block the bot.");
+   process.exitCode=1;
+   client.destroy();
+   process.exit(1);
+ }
  if(mode==="--setup"){
    if(process.env.DISCORD_BEEF_REFEREE_CONFIRM!=="SETUP_FORUM_ONLY_REFEREE")
      throw new Error("For setup, set DISCORD_BEEF_REFEREE_CONFIRM=SETUP_FORUM_ONLY_REFEREE.");
