@@ -45,7 +45,7 @@ $exe = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
 $arg = '-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + $worker + '"'
 $action = New-ScheduledTaskAction -Execute $exe -Argument $arg -WorkingDirectory $dir
 $trigger = New-ScheduledTaskTrigger -AtLogOn -User $identity
-$principal = New-ScheduledTaskPrincipal -UserId $identity -LogonType Interactive -RunLevel LeastPrivilege
+$principal = New-ScheduledTaskPrincipal -UserId $identity -LogonType Interactive -RunLevel Limited
 $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit ([TimeSpan]::Zero) -MultipleInstances IgnoreNew -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
 try {
   Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Principal $principal -Settings $settings -Description "Vitruveo Directors Office Forum-only Beef Room referee; run at user sign-in." -ErrorAction Stop | Out-Null
