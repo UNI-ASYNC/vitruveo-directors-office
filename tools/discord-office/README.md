@@ -1,0 +1,142 @@
+# Read-only Discord inventory
+
+This is an isolated Vitruveo office utility, **not** the Profile NFT Sentinel.
+Never reuse the Profile NFT live token or .env.
+
+Requirements: Node.js 20+, a Discord bot **already invited** into guild `1020154218029531197` with View Channels; do not grant Administrator. The bot must be able to see each channel you want inventoried.
+
+From this folder:
+```bash
+npm install --no-save discord.js dotenv
+```
+Set environment variables privately on your own computer (do not commit the token):
+```text
+DISCORD_GUILD_ID=1020154218029531197
+DISCORD_BOT_TOKEN=<private bot token>
+```
+Run:
+```bash
+node inventory.mjs
+```
+It writes a new `discord-office-inventory.json` file in the current working directory and refuses to overwrite an existing one. Keep this export private until reviewed. It does not collect messages or member lists, make changes, manage roles, or edit the server.
+
+**Important:** The existing *Vitruveo Network Status* bot is not automatically authorized for this job. Prefer a separate least-privilege Office Sentinel bot. A bot with insufficient channel access produces an incomplete inventory; compare to the administrator's screenshots.
+
+## Stage 2: offline setup proposal (no token required)
+
+From this folder, after obtaining a saved inventory, run:
+
+```powershell
+node setup-preview.mjs
+```
+
+This compares your saved inventory with the proposed office channels and roles and prints **KEEP / CREATE / OPTIONAL**. It has no Discord login, does not send API requests, and makes **zero** server changes. The full launch wording is in `docs/DISCORD-OFFICE-INAUGURATION-KIT.md`; community entry rules are in `docs/DISCORD-OFFICE-RULES-DRAFT.md`.
+
+Do not run any apply command yet; a permissions-safe, separately approved deployment program is not ready. Preserve the existing Vitruveo Network Status bot and Profile NFT Sentinel untouched.
+
+## Stage 3: short native Discord launch messages (no PDFs)
+
+Launch content is in `launch-posts.mjs` with five channel-specific messages. Each heading matches its destination channel. Existing messages and channels are not edited or deleted.
+
+1. `node publish-launch.mjs --preview` — no Discord connection, print exact five messages and lengths.
+2. Give Vitruveo Office Sentinel **View Channel, Send Messages, Read Message History** in these specific channels (not Administrator): `#about-the-office`, `#office-announcements`, `#beef-room`, `#office-progress`, `#rules`. For read-only channels, give the bot-specific allow while keeping @everyone's Send Messages denied.
+3. Privately set `DISCORD_BOT_TOKEN` and `DISCORD_GUILD_ID=1020154218029531197`; run `node publish-launch.mjs --check` to validate exact channel IDs/names, permissions, and prior posts **without sending**.
+4. Only after approving displayed text, set `DISCORD_OFFICE_POST_CONFIRM=POST_APPROVED_OFFICE_LAUNCH` and run `node publish-launch.mjs --publish`. Repeated runs skip identical posts by this bot found in recent channel history, and refuse conflicting headed bot posts.
+5. Inspect the five messages in Discord, pin useful launch posts manually, configure Community Rules Screening separately, and remove unnecessary setup permissions (Manage Roles/Manage Channels).
+
+The Discord publisher sends only native text, suppresses link previews, does not create PDFs or files, and will not replace old posts. It does **not** run or modify the Profile NFT Sentinel.
+
+## Preferred: ONE PowerShell-driven office launch
+
+`launch-office.mjs` is the replacement for the manual-permission procedure. It verifies guild and channel IDs first, makes only **bot-specific posting permission overwrites** on the five launch channels if necessary, then sends the short native posts, skipping duplicates. Existing public/staff access rules, messages, channels, Profile NFT, and Network Status bot are not changed. **Do not run the older publisher as well.**
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+node .\launch-office.mjs --plan
+```
+
+When approved, in the same PowerShell session containing `DISCORD_GUILD_ID` and the privately entered `DISCORD_BOT_TOKEN`, run:
+```powershell
+node .\launch-office.mjs --check
+$env:DISCORD_OFFICE_LAUNCH_CONFIRM = "APPROVE_OFFICE_LAUNCH_1020154218029531197"
+node .\launch-office.mjs --apply
+Remove-Item Env:DISCORD_OFFICE_LAUNCH_CONFIRM
+```
+
+For fresh PowerShell sessions, enter the private token locally with `Read-Host -AsSecureString`; never put it in a script or share it. Temporary **Manage Channels** permission is necessary only if the bot currently lacks posting rights in one of the five channels. Read-only `--check` reports that. The installer **does not** alter Community Rules Screening/onboarding, which is distinct from posting text in #rules and may require a separate supported workflow. Review each post in Discord, then remove temporary Manage Channels/Manage Roles. Bot tokens should remain only in the current shell environment, cleared afterward.
+
+## Subject-based public Forum (recommended)
+
+One public Forum discussion per broad **subject**, with links to related GitHub issues where appropriate. This does **not** create a thread per issue and does not touch the restricted channels.
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+node .\seed-forum.mjs --plan
+node .\seed-forum.mjs --check
+$env:DISCORD_OFFICE_FORUM_CONFIRM = "CREATE_OFFICE_FORUM_SUBJECTS"
+node .\seed-forum.mjs --apply
+Remove-Item Env:DISCORD_OFFICE_FORUM_CONFIRM
+```
+
+Requires the private Office Sentinel bot token and guild ID in the shell. The bot needs **View Channel, Create Public Threads, Send Messages in Threads** in the existing `what-are-your-concerns` Forum. It will refuse to proceed rather than modify permissions or grant itself access. It scans active and most recent 100 public archived threads to avoid duplicates, skips matched subject titles, and creates only missing discussions. Older archived threads beyond the returned 100 may need audit before rerunning. All nine subjects are in `forum-subjects.mjs`. Name is `Oldjug` (no space).
+
+## Final security audit + screening limitation
+
+Run in the existing shell with the **Office Sentinel** token and guild ID:
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+node .\audit-office.mjs
+```
+
+This read-only audit checks the nine Forum subjects, launch posts, public text channel permissions, four restricted channels, verified-role access, the Discord membership screening feature flag, and the Office Sentinel's remaining guild role privileges. Errors and warnings are reported without making changes. The older launch posts may still use the prior spelling "Old Jug"; the audit recognizes those as installed and flags them for correction rather than falsely claiming they're missing.
+
+**Discord Rules Screening is different from posting #rules.** Discord removed public documentation for reading/editing the Membership Screening object using bots. If the audit prints a missing screening flag, the supported path is Discord Server Settings > Safety Setup > DM and Spam Protection > Members must accept rules before they can talk or DM. Do not attempt undocumented endpoints from the bot.
+
+**Temporary guild-wide bot permissions:** The bot cannot safely remove permissions from its own managed integration role through the bot token. The audit will report them and the role's managed/editable status. Never change @everyone or protected holder/staff roles to reduce the bot's powers. A server owner can adjust the bot's granted guild permissions in Discord server settings/Integrations or reauthorize the app with a smaller permission set, after verifying that ongoing Sentinel tasks will still work. Retain View Channel, Send Messages, Read Message History, Create Public Threads and Send Messages in Threads as needed; do not leave Administrator enabled.
+
+## Opt-in Beef Room referee — 5-minute Forum-only cooldown
+
+The `beef-referee.mjs` listener is separate from the Profile NFT and Network Status bots. It is **not started automatically** by launch scripts. It monitors messages only in public threads under `what-are-your-concerns`, and looks for sustained reciprocal *personal insults*, not general profanity, criticism, or unpopular opinions. It warns people to use the public `#beef-room`. After continued insults, it sets **300-second per-user slowmode on only that Forum thread**, for 300 seconds, then restores the previous rate limit. Everyone in that affected thread is slowed during that period, not only the two participants; the rest of the Forum and the Beef Room remain open. No Discord guild-wide member timeouts, deletes, bans or automatic thread locks. This is a **basic heuristic**, not an AI understanding of discussion context; review its real-world behavior before deploying unattended.
+
+Prerequisites: the Discord Developer Portal must have the Office Sentinel's **Message Content Intent enabled** (also enabled in this code). The bot needs `Manage Threads`, `Send Messages in Threads`, and `View Channel` in the Forum. These can be granted to the bot (only) with the `--setup` option while temporary Manage Channels still exists. Do not use the Profile NFT bot token.
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+# The token and DISCORD_GUILD_ID must still be set privately in this session
+$env:DISCORD_BEEF_REFEREE_CONFIRM = "SETUP_FORUM_ONLY_REFEREE"
+node .\beef-referee.mjs --setup
+Remove-Item Env:DISCORD_BEEF_REFEREE_CONFIRM
+
+node .\beef-referee.mjs --check
+
+# Only after reviewing the behavior and confirming Message Content Intent:
+$env:DISCORD_BEEF_REFEREE_CONFIRM = "RUN_FORUM_ONLY_REFEREE"
+node .\beef-referee.mjs --run
+```
+
+Keep the PowerShell window running to monitor messages; Ctrl+C stops the listener. The local `beef-referee-state.json` is an operational restore ledger: **do not delete it while cooldowns remain active**. On restart, the bot restores expired cooldowns when it reconnects. Since the timer is not a Discord-native timed restriction, a server restart/outage may prolong slowmode until the process restarts. The listener does not work when the PC is off; deploy a dedicated long-running worker later if continuous coverage is needed. Only the Office Sentinel needs access. Run the usual read-only audit before removing the temporary Manage Channels/Manage Roles privileges; the referee needs Manage Threads while it is operational.
+
+## Public Forum onboarding: guidelines, tags, default reaction
+
+The nine public subject posts exist already. `configure-forum.mjs` adds **Forum-level** post guidelines, contribution-type tags (Question, Concern, Evidence, Technical Problem, Proposal, Solution, Status Update), and 👍 default reaction to the existing `what-are-your-concerns` Forum. It preserves existing Forum tag IDs and names, existing posts, roles, and channel permission overwrites. It does not require privileged Message Content intent and uses only the Office Sentinel.
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+node .\configure-forum.mjs --check
+$env:DISCORD_OFFICE_FORUM_SETTINGS_CONFIRM = "APPLY_OFFICE_FORUM_SETTINGS"
+node .\configure-forum.mjs --apply
+Remove-Item Env:DISCORD_OFFICE_FORUM_SETTINGS_CONFIRM
+```
+
+Requires the Office Sentinel's private bot token and guild ID already present in the shell, and **Manage Channels** permission in that Forum. Do this before removing the bot's temporary Manage Channels grant. The script refuses a wrong guild, wrong Forum ID/name, or a tag limit overflow. It sends one channel-settings edit and verifies returned values.
