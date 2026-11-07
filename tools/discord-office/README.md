@@ -124,3 +124,19 @@ node .\beef-referee.mjs --run
 ```
 
 Keep the PowerShell window running to monitor messages; Ctrl+C stops the listener. The local `beef-referee-state.json` is an operational restore ledger: **do not delete it while cooldowns remain active**. On restart, the bot restores expired cooldowns when it reconnects. Since the timer is not a Discord-native timed restriction, a server restart/outage may prolong slowmode until the process restarts. The listener does not work when the PC is off; deploy a dedicated long-running worker later if continuous coverage is needed. Only the Office Sentinel needs access. Run the usual read-only audit before removing the temporary Manage Channels/Manage Roles privileges; the referee needs Manage Threads while it is operational.
+
+## Public Forum onboarding: guidelines, tags, default reaction
+
+The nine public subject posts exist already. `configure-forum.mjs` adds **Forum-level** post guidelines, contribution-type tags (Question, Concern, Evidence, Technical Problem, Proposal, Solution, Status Update), and 👍 default reaction to the existing `what-are-your-concerns` Forum. It preserves existing Forum tag IDs and names, existing posts, roles, and channel permission overwrites. It does not require privileged Message Content intent and uses only the Office Sentinel.
+
+```powershell
+cd "$HOME\vitruveo-directors-office"
+git pull
+cd tools\discord-office
+node .\configure-forum.mjs --check
+$env:DISCORD_OFFICE_FORUM_SETTINGS_CONFIRM = "APPLY_OFFICE_FORUM_SETTINGS"
+node .\configure-forum.mjs --apply
+Remove-Item Env:DISCORD_OFFICE_FORUM_SETTINGS_CONFIRM
+```
+
+Requires the Office Sentinel's private bot token and guild ID already present in the shell, and **Manage Channels** permission in that Forum. Do this before removing the bot's temporary Manage Channels grant. The script refuses a wrong guild, wrong Forum ID/name, or a tag limit overflow. It sends one channel-settings edit and verifies returned values.
