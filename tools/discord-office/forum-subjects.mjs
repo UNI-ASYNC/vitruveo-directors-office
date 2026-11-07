@@ -1,6 +1,6 @@
 // Vitruveo Office Forum: discussions by SUBJECT, not issue number.
 // Each discussion may cite one or more public issues; members can discuss without GitHub.
-const repo="https://github.com/https://github.com/UNI-ASYNC/vitruveo-directors-office/issues/issues";
+const repo="https://github.com/UNI-ASYNC/vitruveo-directors-office/issues";
 export const subjects=[
   {title:"⛓️ Blockchain & Network Concerns",
    body:`**Subject: Blockchain & Network Concerns**
