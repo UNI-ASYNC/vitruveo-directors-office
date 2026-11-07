@@ -1,10 +1,26 @@
 # Vitruveo — Independent Network Development
 
-**Public development workspace maintained by Old Jug (UNI-ASYNC).**
+**Public development workspace maintained by Oldjug (UNI-ASYNC).**
 
 I'm interested in contributing practical improvements to Vitruveo's open-source ecosystem. This is **not an effort to take over the chain, its repositories, or its existing maintainers' responsibilities**. It's a place to show the work I see a need for, test ideas independently, and offer fixes for upstream review.
 
 My focus is making Vitruveo easier for independent operators to install, maintain, verify, and recover, while exploring options for transparent, shared validator-operator governance. Governance changes are **proposals for discussion**, not claims of existing authority or approval.
+
+## How to participate
+
+**HOW TO PARTICIPATE — VITRUVEO DIRECTOR'S OFFICE**
+
+This is a public working office. Anyone can read the work, ask questions, challenge claims, provide evidence, or suggest a fix. You do not need to join the development team.
+
+**Use GitHub if you prefer:**
+1. Read the open work: https://github.com/UNI-ASYNC/vitruveo-directors-office/issues
+2. With a free GitHub account, open an existing issue and add a comment, test result, evidence, or proposed solution.
+3. For a new subject not already covered, use **New issue** in that tracker (when enabled). Give it a clear title, explain the problem, and include public supporting details.
+4. For code or documentation changes, fork this repository, make the change, and submit a pull request for review.
+
+**Prefer Discord?** Use the public **what-are-your-concerns** Forum, organized by subject. No GitHub account is required to join the Discord discussion. Relevant work can be linked between the two.
+
+Contributions are proposals, not automatic approvals or production deployments. Never post credentials, private keys, or undisclosed security vulnerabilities. — Oldjug
 
 ## Public development proposals
 
