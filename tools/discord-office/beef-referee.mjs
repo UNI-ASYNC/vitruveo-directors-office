@@ -21,7 +21,7 @@ const GUILD="1020154218029531197",FORUM="what-are-your-concerns",BEEF="beef-room
 const STATE_FILE="beef-referee-state.json";
 const WINDOW_MS=180000, COOLDOWN_MS=300000, SLOWMODE_SECS=300;
 const mode=process.argv[2]||"--check";
-if(!["--check","--run"].includes(mode))throw new Error("Use --check or --run");
+if(!["--check","--setup","--run"].includes(mode))throw new Error("Use --check, --setup or --run");
 if(process.env.DISCORD_GUILD_ID!==GUILD || !process.env.DISCORD_BOT_TOKEN)
  throw new Error("Set DISCORD_GUILD_ID and DISCORD_BOT_TOKEN privately.");
 if(mode==="--run" && process.env.DISCORD_BEEF_REFEREE_CONFIRM!=="RUN_FORUM_ONLY_REFEREE")
@@ -116,6 +116,16 @@ try{
  if(forum.length!==1||beef.length!==1)throw new Error("Expected exactly one intended Forum and Beef Room.");
  const me=await guild.members.fetchMe();
  const required=[P.ViewChannel,P.SendMessagesInThreads,P.ManageThreads];
+ if(mode==="--setup"){
+   if(process.env.DISCORD_BEEF_REFEREE_CONFIRM!=="SETUP_FORUM_ONLY_REFEREE")
+     throw new Error("For setup, set DISCORD_BEEF_REFEREE_CONFIRM=SETUP_FORUM_ONLY_REFEREE.");
+   if(!me.permissions.has(P.ManageChannels))throw new Error("Temporary ManageChannels needed for bot-specific forum setup.");
+   await forum[0].permissionOverwrites.edit(me.id,{
+     ViewChannel:true,SendMessagesInThreads:true,ManageThreads:true
+   },{reason:"Office-only referee forum-thread slowmode; no access changes for regular users"});
+   console.log("SETUP: bot-specific Forum permissions granted. No member/role permissions changed.");
+   client.destroy();process.exit(0);
+ }
  for(const bit of required){
    if(!forum[0].permissionsFor(me)?.has(bit))throw new Error("Missing Forum permission "+String(bit));
  }
